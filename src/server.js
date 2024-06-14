@@ -13,8 +13,6 @@ let runningEnvironment = process.env.NODE_ENV;
 let DB =
   runningEnvironment == "production" ? process.env.PROD_DB : process.env.DEV_DB || "mongodb://localhost:27017/test"
 
-console.log({ port, runningEnvironment, DB });
-
 //connect to database
 /*
 connectDB(DB)

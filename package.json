@@ -14,11 +14,16 @@
   "author": "Adefuye Abayomi",
   "license": "MIT",
   "dependencies": {
+    "@getbrevo/brevo": "^2.1.1",
+    "axios": "^1.7.2",
     "cors": "^2.8.5",
     "dotenv": "^16.4.1",
     "express": "^4.18.2",
+    "mailbit-library-nodejs": "^1.0.2",
     "mailersend": "^2.2.0",
-    "mongoose": "^8.1.1"
+    "mongoose": "^8.1.1",
+    "node-mailjet": "^6.0.5",
+    "nodemailer": "^6.9.13"
   },
   "devDependencies": {
     "eslint": "^8.56.0",

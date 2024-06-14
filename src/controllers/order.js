@@ -1,34 +1,23 @@
 // Controller function for processing an order
-
-const {htmlBodyTemplates, mailerSendImplementation} = require('../utils/sendMail')
+  const {transporter,mailOptions} = require('../utils/nodeMailerSetup')
+  const {htmlBodyTemplates} = require('../utils/emailTemplates')
 const processOrder = (req, res) => {
     const { name, contactNumber, meal, totalPrice, addons } = req.body;
-  
-    // Log the properties to the console
-    console.log('Name:', name)
-    console.log('Contact Number:', contactNumber)
-    console.log('Meal:', meal)
-    console.log('Total Price:', totalPrice)
-    console.log('Add-ons:', addons)
-  
-    // Send a response back to the client
-    // send mail
-    console.log(
-        htmlBodyTemplates.orderRequest({ name, contactNumber, meal, totalPrice, addons }))
-    mailerSendImplementation(
-    'joegreencafeteriaservice@gmail.com',
-    'Joes Cafeteria Website',
-    "New Order Request",
-    htmlBodyTemplates.orderRequest({ name, contactNumber, meal, totalPrice, addons }),
-    )
-    .then((response) => {
-        console.log(response)
-    res.status(200).send('Order processed successfully');
-    })
-    .catch((err) => {
-        console.log({ err })
-        res.status(500).send({error: err.message});
-    })
+    mailOptions.html =htmlBodyTemplates.orderRequest({ name, contactNumber, meal, totalPrice, addons })
+    try {
+            // Send email
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                res.status(500).send({error: error.message})
+                console.log('Error occurred:', error)
+            }
+            console.log('Message sent:', info.messageId)
+            res.status(200).send({message: 'Order Processed Successfully'})
+        })
+    }
+    catch(err){
+        console.error(err)
+    }
   };
 
   module.exports = {processOrder}

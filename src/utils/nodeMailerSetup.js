@@ -16,7 +16,7 @@ const transporter = nodemailer.createTransport({
 // Define email options
 const mailOptions = {
   from: '"Joegreen Order System" <adefuyeabayomi16@gmail.com>', // Sender address
-  to: 'adefuyeabayomi16@gmail.com', // List of receivers
+  to: 'joegreencafeteriaservice@gmail.com', // List of receivers
   subject: 'New Order Request', // Subject line
   html: undefined
 };
